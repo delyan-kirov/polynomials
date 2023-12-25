@@ -1,9 +1,12 @@
+{-# LANGUAGE MultiWayIf #-}
+
 module Main where
 
+import Data.List (maximumBy, sort, sortBy)
+import Data.List.NonEmpty (nonEmpty)
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 import Data.Tree (flatten)
-import Data.List (sort, sortBy)
 
 data Card
   = A
@@ -78,6 +81,25 @@ cardValue Seven = 7
 cardValue Eight = 8
 cardValue Nine = 9
 
+cardValue' :: Card -> Int
+cardValue' J = 0 
+cardValue' card = cardValue card
+
+compareCards :: [Card] -> [Card] -> Ordering
+compareCards xs ys = compareLists compareCards' xs ys
+  where
+    compareCards' :: Card -> Card -> Ordering
+    compareCards' card1 card2 = compare (cardValue' card1) (cardValue' card2)
+    -- extend compare cards to lists 
+    compareLists :: (a -> a -> Ordering) -> [a] -> [a] -> Ordering
+    compareLists _ [] [] = EQ
+    compareLists _ [] _  = LT
+    compareLists _ _ []  = GT
+    compareLists cmp (x:xs) (y:ys) =
+      case cmp x y of
+        EQ -> compareLists cmp xs ys
+        result -> result
+
 instance Ord Card where
   compare card1 card2 = compare (cardValue card1) (cardValue card2)
 
@@ -101,42 +123,43 @@ instance Ord Hand where
       | onePair hand = 1
       | highCard hand = 0
 
-removeAt _ [] = []
-removeAt n xs
-  | n < 0 = xs -- Index is negative, do nothing
-  | n >= length xs = xs -- Index is out of bounds, do nothing
-  | otherwise = before ++ after
+compareHand :: Hand -> Hand -> Ordering
+compareHand hand1 hand2
+  | cardType hand1 > cardType hand2 = GT
+  | cardType hand1 < cardType hand2 = LT
+  | otherwise = compareCards (handToList hand1) (handToList hand2)
  where
-  (before, _ : after) = splitAt n xs
-
-cardType :: Hand -> Int
-cardType hand
- | fiveKind hand = 6
- | fourKind hand = 5
- | fullHouse hand = 4
- | threeKind hand = 3
- | twoPair hand = 2
- | onePair hand = 1
- | highCard hand = 0
-
-allSame :: (Eq a) => [a] -> Bool
-allSame [] = True
-allSame (x : xs) = all (== x) xs
+  handToList (Hand a1 a2 a3 a4 a5) = [a1, a2, a3, a4, a5]
+  cardType :: Hand -> Int
+  cardType hand
+    | fiveKind $ joke hand = 6
+    | fourKind $ joke hand = 5
+    | fullHouse $ joke hand = 4
+    | threeKind $ joke hand = 3
+    | twoPair $ joke hand = 2
+    | onePair $ joke hand = 1
+    | highCard $ joke hand = 0
 
 fourKind :: Hand -> Bool
 fourKind (Hand a1 a2 a3 a4 a5) = do
   let deck = [a1, a2, a3, a4, a5]
-  (not . allSame) deck && any allSame (subsets deck)
+      multiSet = Map.fromListWith (+) [(el, 1) | el <- deck]
+      maxMult = maximum $ [t | (s, t) <- Map.assocs multiSet]
+  maxMult == 4
 
-subsets :: [a] -> [[a]]
-subsets [] = [[]]
-subsets xs = subsets' [[]] 0 xs
- where
-  subsets' :: [[a]] -> Int -> [a] -> [[a]]
-  subsets' carry len xs
-    | len == 0 = subsets' [removeAt len xs] (len + 1) xs
-    | len == length xs = carry
-    | otherwise = subsets' (removeAt len xs : carry) (len + 1) xs
+joke :: Hand -> Hand
+joke (Hand J J J J J) = Hand J J J J J
+joke (Hand a1 a2 a3 a4 a5) = do
+  let handList = [a1, a2, a3, a4, a5]
+      multiSet = Map.fromListWith (+) [(el, 1) | el <- handList]
+      nonJs = Map.assocs $ Map.delete J multiSet
+      h = let maxNonJ =
+                fst $
+                maximumBy (\(_, x) (_, y) -> compare x y) $
+                Map.assocs $
+                Map.delete J multiSet
+          in (\x -> if x == J then maxNonJ else x) <$> handList
+  case h of [a1, a2, a3, a4, a5] -> Hand a1 a2 a3 a4 a5
 
 fiveKind :: Hand -> Bool
 fiveKind (Hand a1 a2 a3 a4 a5) = do
@@ -179,11 +202,18 @@ solution_1 :: String -> Int
 solution_1 s = do
   let hand_bet_s = sortBy (\ (x, _) (y, _) -> compare y x) $ parseInput s
       bets = reverse [t | (s, t) <- hand_bet_s]
-  let res = sum $ zipWith (*) bets [1 .. length bets]
-  res
-  
+  sum $ zipWith (*) bets [1 .. length bets]
+
+solution_2 :: String -> Int
+solution_2 s = do
+  let hand_bet_s = sortBy (\(x, _) (y, _) -> compareHand x y) $ parseInput s
+      bets = [t | (s, t) <- hand_bet_s]
+  sum $ zipWith (*) bets [1 .. length bets]
+
 main :: IO ()
 main = do
   inputFile <- readFile "./input.txt"
   print $ solution_1 inputFile
   print $ solution_1 example
+  print $ solution_2 inputFile
+  print $ solution_2 example
