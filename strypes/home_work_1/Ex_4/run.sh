@@ -8,4 +8,4 @@ fi
 
 # Execute the C++ program with stdin redirected to numbers.txt
 echo "Executing C++ program with input from numbers.txt..."
-./cpp_program < numbers.txt
+./main < numbers.txt
