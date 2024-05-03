@@ -1,0 +1,12 @@
+* Homework for stripes C++ course
+DEADLINE: <2024-05-06 Mon>
+
+** TODO Exercise 1 [[Етапи на компилиране на С++ програми]]
+
+** TODO Exercise 2 [[Floating-point numbers - IEEE754]]
+
+** TODO Exercise 3 [[Head function]]
+
+** TODO Exercise 4 [[Tail function]]
+
+** TODO Exercise 6 [[wc function]]

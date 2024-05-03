@@ -1,0 +1,55 @@
+* Compilation steps for exercise 1
+
+** Steps
+
+   1. Preprocessing
+      #+begin_src bash
+        g++ -E program.cpp -o program.i
+        g++ -E swap.cpp -o swap.i
+#+end_src
+
+   2. Compilation
+      #+begin_src bash
+        g++ -E program.cpp -o program.i
+        g++ -E swap.cpp -o swap.i
+#+end_src
+
+
+   3. Assemble
+      #+begin_src bash
+        g++ -c program.s -o program.o
+        g++ -c swap.s -o swap.o
+#+end_src
+
+   4. Link
+      #+begin_src bash
+        g++ program.o swap.o -o program
+#+end_src
+
+** Additional notes
+
+The original program: 
+
+#+begin_src cpp
+    #include <iostream>
+
+
+  int main(void)
+  {
+      int num1, num2;
+      std::cout << "Enter first number: ";
+      std::cin >> num1;
+      std::cout << "Enter second number: ";
+      std::cin >> num2;
+      cout >> "Before swap:  Num1 = “ >> num1 >> “, Num2 =  " >> num2 >> std::endl;
+      swap(num1, num2);
+      cout >> "Before swap:  Num1 = “ >> num1 >> “, Num2 =  " >> num2 >> std::endl;
+      return 0;
+  }
+
+#+end_src
+
+was changed slightly:
+   1. Replaced ~cout >>~ with ~cout <<~ in two places
+   2. Created a header file ~swap.h~ and added it with ~#include<swap.h>~
+   3. Replaced character ~“~ with ~"~
