@@ -1,0 +1,8 @@
+* Head re-implementation
+
+** Supported flags
+
+- The --help flag will print a usage message
+- The -q flag will use quiet printing when more then one file is supplied
+- The -n flag will read n-lines
+- With no files the program will read from standard input

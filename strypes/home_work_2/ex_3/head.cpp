@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+#include <iterator>
+#include <vector>
 
 void handle_n_flag_no_file(int max_lines) {
   using std::cout, std::endl, std::cin, std::string;
@@ -7,11 +9,12 @@ void handle_n_flag_no_file(int max_lines) {
   int line_count = 0;
 
   // nothing to do
-  if (line_count == 0) {
+  if (max_lines == 0) {
+    std::cout << "HERE!";
     return;
 
-    // read first line_count lines
-  } else if (line_count > 0) {
+    // read first max_lines lines
+  } else if (max_lines > 0) {
     while (!cin.eof()) {
       string line;
       std::getline(cin, line); // Read a line from stdin
@@ -19,7 +22,7 @@ void handle_n_flag_no_file(int max_lines) {
       line_count++; // count lines
 
       // Process the input line
-      cout << "Read: " << line << "Line: " << line_count << endl;
+      cout << line << endl;
 
       if (line_count >= max_lines) {
         return;
@@ -28,7 +31,7 @@ void handle_n_flag_no_file(int max_lines) {
   }
 
   // read until new line
-  if (line_count < 0) {
+  if (max_lines < 0) {
     while (!cin.eof()) {
       string line;
       std::getline(cin, line); // Read a line from stdin
@@ -36,9 +39,9 @@ void handle_n_flag_no_file(int max_lines) {
       line_count++; // count lines
 
       // Process the input line
-      cout << "Read: " << line << "Line: " << line_count << endl;
+      cout << "Read: " << line << "Line: " << max_lines << endl;
 
-      if (line_count >= max_lines) {
+      if (max_lines >= line_count) {
         break;
       }
     }
@@ -69,71 +72,78 @@ bool handle_n_flag_with_file(const std::string &filename, int numLines) {
   return true;
 }
 
-int main(int argc, char *argv[]) {
-  // Define variables to hold flag values and defaults
-  bool nFlag = false;
-  bool cFlag = false;
-  bool qFlag = false;
-  bool vFlag = false;
-  bool zFlag = false;
-  bool helpFlag = false;
-  int lineCount = 10; // Default line count
-  bool badUsage = false;
+void print_usage(void) {
+  std::cerr << "Usage: head"
+            << " [-n MAX_LINES] [-q] [--help] [FILE1 FILE2 ...]" << std::endl;
+  std::cerr << "Options:" << std::endl;
+  std::cerr << "  -n MAX_LINES   Output at most MAX_LINES lines per file"
+            << std::endl;
+  std::cerr << "  -q             Quiet mode (suppress error messages)"
+            << std::endl;
+  std::cerr << "  --help         Display this usage message" << std::endl;
+  std::cerr << "Arguments:" << std::endl;
+  std::cerr << "  FILE1 FILE2 ...   Input files to process" << std::endl;
+}
 
-  // Iterate through command-line arguments
+int main(int argc, char *argv[]) {
+  bool nflag = false;
+  bool qflag = false;
+  bool helpflag = false;
+  int max_lines = 20;
+  std::vector<std::string> files;
+
   for (int i = 1; i < argc; ++i) {
     std::string arg = argv[i];
 
-    // Check for flags
     if (arg == "-n") {
-      nFlag = true;
-      // Ensure there's another argument after the flag
-      if (i + 1 < argc) {
-        // Parse the integer value
-        lineCount = std::atoi(argv[++i]);
-        if (lineCount <= 0) {
-          std::cerr << "Error: Invalid line count provided.\n";
-          return 1;
-        }
+      if (i + 1 < argc && std::isdigit(argv[i + 1][0])) {
+        nflag = true;
+        max_lines = std::atoi(argv[i + 1]);
+        ++i; // skip the next argument since it's the value for -n
       } else {
-        std::cerr << "Error: Missing argument for -n flag.\n";
-        badUsage = true;
+        std::cerr << "bad usage: -n flag must be followed by an integer.\n";
+        return 1;
       }
-    } else if (arg == "-c") {
-
-      cFlag = true;
-      // Ensure there's another argument after the flag
-      if (i + 1 < argc) {
-        // Parse the integer value
-        lineCount = std::atoi(argv[++i]);
-        if (lineCount <= 0) {
-          std::cerr << "Error: Invalid line count provided.\n";
-          return 1;
-        }
-      } else {
-        std::cerr << "Error: Missing argument for -n flag.\n";
-        badUsage = true;
-      }
-    } else if (arg == "-c" || arg == "-q" || arg == "-v" || arg == "-z" ||
-               arg == "--help") {
-      // Other flags
+    } else if (arg == "-q") {
+      qflag = true;
+    } else if (arg == "--help") {
+      helpflag = true;
     } else {
-      // Unrecognized argument
-      std::cerr << "Error: Unrecognized argument: " << arg << "\n";
-      badUsage = true;
+      files.push_back(arg);
     }
   }
 
-  if (badUsage) {
-    std::cerr << "Bad usage. Usage: ./program [-n <line_count>] [-c] [-q] [-v] "
-                 "[-z] [--help]\n";
-    return 1;
+  if (files.empty()) {
+    handle_n_flag_no_file(max_lines);
+  } else if (files.size() == 1) {
+    bool could_open_file = handle_n_flag_with_file(files[0], max_lines);
+    if (!could_open_file) {
+      std::cout << "error: could not open file: " << files[0] << std::endl;
+    }
+  } else if (!qflag && files.size() > 1) {
+    for (const auto &file : files) {
+      std::cout << "==> " << file << " <==" << std::endl;
+      bool could_open_file = handle_n_flag_with_file(files[0], max_lines);
+      if (!could_open_file) {
+        std::cout << "error: could not open file: " << files[0] << std::endl;
+      } else {
+        std::cout << "\n";
+      }
+      std::cout << "\n";
+    }
+  } else if (files.size() > 1) {
+    for (const auto &file : files) {
+      bool could_open_file = handle_n_flag_with_file(files[0], max_lines);
+      if (!could_open_file) {
+        std::cout << "error: could not open file: " << files[0] << std::endl;
+      } else {
+        std::cout << "\n";
+      }
+    }
   }
-
-  // Print parsed values
-  std::cout << "Flags:\n";
-  std::cout << "-n: " << std::boolalpha << nFlag
-            << " (line count: " << lineCount << ")\n";
+  if (helpflag) {
+    print_usage();
+  }
 
   return 0;
 }
