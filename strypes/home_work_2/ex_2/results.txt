@@ -1,0 +1,194 @@
+Testing for type: f
+nearly_equal with epsilon 1.52588e-05: Test failed
+nearly_equal_2 with epsilon 1.52588e-05: Test failed
+nearly_equal_3 with epsilon 1.52588e-05: Test failed
+absolute_epsilon_equal with epsilon 1.52588e-05: Test failed
+relative_distance_equal with epsilon 1.52588e-05: Test failed
+AlmostEqual2sComplement with epsilon 1.52588e-05: Test failed
+
+== operator: Test failed
+nearly_equal with epsilon 3.05176e-05: Test failed
+nearly_equal_2 with epsilon 3.05176e-05: Test failed
+nearly_equal_3 with epsilon 3.05176e-05: Test failed
+absolute_epsilon_equal with epsilon 3.05176e-05: Test failed
+relative_distance_equal with epsilon 3.05176e-05: Test failed
+AlmostEqual2sComplement with epsilon 3.05176e-05: Test failed
+
+== operator: Test failed
+nearly_equal with epsilon 6.10352e-05: Test failed
+nearly_equal_2 with epsilon 6.10352e-05: Test failed
+nearly_equal_3 with epsilon 6.10352e-05: Test failed
+absolute_epsilon_equal with epsilon 6.10352e-05: Test failed
+relative_distance_equal with epsilon 6.10352e-05: Test failed
+AlmostEqual2sComplement with epsilon 6.10352e-05: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.52588e-05: Test succeeded
+nearly_equal_2 with epsilon 1.52588e-05: Test succeeded
+nearly_equal_3 with epsilon 1.52588e-05: Test succeeded
+absolute_epsilon_equal with epsilon 1.52588e-05: Test succeeded
+relative_distance_equal with epsilon 1.52588e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 1.52588e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 3.05176e-05: Test succeeded
+nearly_equal_2 with epsilon 3.05176e-05: Test succeeded
+nearly_equal_3 with epsilon 3.05176e-05: Test succeeded
+absolute_epsilon_equal with epsilon 3.05176e-05: Test succeeded
+relative_distance_equal with epsilon 3.05176e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 3.05176e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 6.10352e-05: Test succeeded
+nearly_equal_2 with epsilon 6.10352e-05: Test succeeded
+nearly_equal_3 with epsilon 6.10352e-05: Test succeeded
+absolute_epsilon_equal with epsilon 6.10352e-05: Test succeeded
+relative_distance_equal with epsilon 6.10352e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 6.10352e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.52588e-05: Test succeeded
+nearly_equal_2 with epsilon 1.52588e-05: Test succeeded
+nearly_equal_3 with epsilon 1.52588e-05: Test succeeded
+absolute_epsilon_equal with epsilon 1.52588e-05: Test succeeded
+relative_distance_equal with epsilon 1.52588e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 1.52588e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 3.05176e-05: Test succeeded
+nearly_equal_2 with epsilon 3.05176e-05: Test succeeded
+nearly_equal_3 with epsilon 3.05176e-05: Test succeeded
+absolute_epsilon_equal with epsilon 3.05176e-05: Test succeeded
+relative_distance_equal with epsilon 3.05176e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 3.05176e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 6.10352e-05: Test succeeded
+nearly_equal_2 with epsilon 6.10352e-05: Test succeeded
+nearly_equal_3 with epsilon 6.10352e-05: Test succeeded
+absolute_epsilon_equal with epsilon 6.10352e-05: Test succeeded
+relative_distance_equal with epsilon 6.10352e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 6.10352e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.52588e-05: Test succeeded
+nearly_equal_2 with epsilon 1.52588e-05: Test succeeded
+nearly_equal_3 with epsilon 1.52588e-05: Test succeeded
+absolute_epsilon_equal with epsilon 1.52588e-05: Test succeeded
+relative_distance_equal with epsilon 1.52588e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 1.52588e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 3.05176e-05: Test succeeded
+nearly_equal_2 with epsilon 3.05176e-05: Test succeeded
+nearly_equal_3 with epsilon 3.05176e-05: Test succeeded
+absolute_epsilon_equal with epsilon 3.05176e-05: Test succeeded
+relative_distance_equal with epsilon 3.05176e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 3.05176e-05: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 6.10352e-05: Test succeeded
+nearly_equal_2 with epsilon 6.10352e-05: Test succeeded
+nearly_equal_3 with epsilon 6.10352e-05: Test succeeded
+absolute_epsilon_equal with epsilon 6.10352e-05: Test succeeded
+relative_distance_equal with epsilon 6.10352e-05: Test succeeded
+AlmostEqual2sComplement with epsilon 6.10352e-05: Test succeeded
+
+== operator: Test succeeded
+Testing for type: d
+nearly_equal with epsilon 2.84217e-14: Test failed
+nearly_equal_2 with epsilon 2.84217e-14: Test failed
+nearly_equal_3 with epsilon 2.84217e-14: Test failed
+absolute_epsilon_equal with epsilon 2.84217e-14: Test failed
+relative_distance_equal with epsilon 2.84217e-14: Test failed
+AlmostEqual2sComplement with epsilon 2.84217e-14: Test failed
+
+== operator: Test failed
+nearly_equal with epsilon 5.68434e-14: Test failed
+nearly_equal_2 with epsilon 5.68434e-14: Test failed
+nearly_equal_3 with epsilon 5.68434e-14: Test failed
+absolute_epsilon_equal with epsilon 5.68434e-14: Test failed
+relative_distance_equal with epsilon 5.68434e-14: Test failed
+AlmostEqual2sComplement with epsilon 5.68434e-14: Test failed
+
+== operator: Test failed
+nearly_equal with epsilon 1.13687e-13: Test failed
+nearly_equal_2 with epsilon 1.13687e-13: Test failed
+nearly_equal_3 with epsilon 1.13687e-13: Test failed
+absolute_epsilon_equal with epsilon 1.13687e-13: Test failed
+relative_distance_equal with epsilon 1.13687e-13: Test failed
+AlmostEqual2sComplement with epsilon 1.13687e-13: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 2.84217e-14: Test succeeded
+nearly_equal_2 with epsilon 2.84217e-14: Test succeeded
+nearly_equal_3 with epsilon 2.84217e-14: Test succeeded
+absolute_epsilon_equal with epsilon 2.84217e-14: Test succeeded
+relative_distance_equal with epsilon 2.84217e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 2.84217e-14: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 5.68434e-14: Test succeeded
+nearly_equal_2 with epsilon 5.68434e-14: Test succeeded
+nearly_equal_3 with epsilon 5.68434e-14: Test succeeded
+absolute_epsilon_equal with epsilon 5.68434e-14: Test succeeded
+relative_distance_equal with epsilon 5.68434e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 5.68434e-14: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.13687e-13: Test succeeded
+nearly_equal_2 with epsilon 1.13687e-13: Test succeeded
+nearly_equal_3 with epsilon 1.13687e-13: Test succeeded
+absolute_epsilon_equal with epsilon 1.13687e-13: Test succeeded
+relative_distance_equal with epsilon 1.13687e-13: Test succeeded
+AlmostEqual2sComplement with epsilon 1.13687e-13: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 2.84217e-14: Test succeeded
+nearly_equal_2 with epsilon 2.84217e-14: Test succeeded
+nearly_equal_3 with epsilon 2.84217e-14: Test succeeded
+absolute_epsilon_equal with epsilon 2.84217e-14: Test succeeded
+relative_distance_equal with epsilon 2.84217e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 2.84217e-14: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 5.68434e-14: Test succeeded
+nearly_equal_2 with epsilon 5.68434e-14: Test succeeded
+nearly_equal_3 with epsilon 5.68434e-14: Test succeeded
+absolute_epsilon_equal with epsilon 5.68434e-14: Test succeeded
+relative_distance_equal with epsilon 5.68434e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 5.68434e-14: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.13687e-13: Test succeeded
+nearly_equal_2 with epsilon 1.13687e-13: Test succeeded
+nearly_equal_3 with epsilon 1.13687e-13: Test succeeded
+absolute_epsilon_equal with epsilon 1.13687e-13: Test succeeded
+relative_distance_equal with epsilon 1.13687e-13: Test succeeded
+AlmostEqual2sComplement with epsilon 1.13687e-13: Test failed
+
+== operator: Test succeeded
+nearly_equal with epsilon 2.84217e-14: Test succeeded
+nearly_equal_2 with epsilon 2.84217e-14: Test succeeded
+nearly_equal_3 with epsilon 2.84217e-14: Test succeeded
+absolute_epsilon_equal with epsilon 2.84217e-14: Test succeeded
+relative_distance_equal with epsilon 2.84217e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 2.84217e-14: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 5.68434e-14: Test succeeded
+nearly_equal_2 with epsilon 5.68434e-14: Test succeeded
+nearly_equal_3 with epsilon 5.68434e-14: Test succeeded
+absolute_epsilon_equal with epsilon 5.68434e-14: Test succeeded
+relative_distance_equal with epsilon 5.68434e-14: Test succeeded
+AlmostEqual2sComplement with epsilon 5.68434e-14: Test succeeded
+
+== operator: Test succeeded
+nearly_equal with epsilon 1.13687e-13: Test succeeded
+nearly_equal_2 with epsilon 1.13687e-13: Test succeeded
+nearly_equal_3 with epsilon 1.13687e-13: Test succeeded
+absolute_epsilon_equal with epsilon 1.13687e-13: Test succeeded
+relative_distance_equal with epsilon 1.13687e-13: Test succeeded
+AlmostEqual2sComplement with epsilon 1.13687e-13: Test succeeded
+
+== operator: Test succeeded
