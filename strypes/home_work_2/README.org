@@ -1,12 +1,123 @@
-* Homework for stripes C++ course
+* Homework for stripes C++ course [[link][https://github.com/delyan-kirov/public/tree/master/strypes/home_work_2]]
 DEADLINE: <2024-05-06 Mon>
 
-** TODO Exercise 1 [[Етапи на компилиране на С++ програми]]
+** DONE Exercise 1 [[Етапи на компилиране на С++ програми]]
+CLOSED: [2024-05-05 Sun 16:11]
 
-** TODO Exercise 2 [[Floating-point numbers - IEEE754]]
+** DONE Exercise 2 [[Floating-point numbers - IEEE754]]
+CLOSED: [2024-05-05 Sun 16:11]
 
-** TODO Exercise 3 [[Head function]]
+*** Compile
 
-** TODO Exercise 4 [[Tail function]]
+#+begin_src bash
+  make
+#+end_src
 
-** TODO Exercise 6 [[wc function]]
+
+*** Clean
+
+#+begin_src bash
+  clean
+#+end_src
+
+*** Test
+
+#+begin_src
+  make test
+#+end_src
+
+The results should be printed in ~result.txt~.
+
+** DONE Exercise 3 [[Head function]]
+CLOSED: [2024-05-05 Sun 16:11]
+
+*** Compile
+
+#+begin_src bash
+  make
+#+end_src
+
+
+*** Clean
+
+#+begin_src bash
+  clean
+#+end_src
+
+*** Example usage
+
+#+begin_src
+  # with no file
+  ./head
+  
+  # with no file and -n flag
+  ./head -n 2
+
+  # with files using -q (quiet flag)
+  ./head head.cpp makefile
+#+end_src
+
+** DONE Exercise 4 [[Tail function]]
+CLOSED: [2024-05-05 Sun 16:11]
+
+
+*** Compile
+
+#+begin_src bash
+  make
+#+end_src
+
+
+*** Clean
+
+#+begin_src bash
+  clean
+#+end_src
+
+*** Example usage
+
+#+begin_src
+  # with no file
+  ./tail
+  
+  # with no file and -n flag
+  ./tail -n 2
+
+  # with files using -q (quiet flag)
+  ./tail tail.cpp makefile
+#+end_src
+
+** DONE Exercise 6 [[wc function]]
+CLOSED: [2024-05-05 Sun 16:12]
+
+
+*** Compile
+
+#+begin_src bash
+  make
+#+end_src
+
+*** Clean
+
+#+begin_src bash
+  make clean
+#+end_src
+
+*** Test
+
+#+begin_src bash
+  make test
+#+end_src
+
+*** Example usage
+
+#+begin_src
+  # with no file
+  ./wc
+  
+  # with -l flag
+  ./wc head.cpp
+
+  # with multiple files
+	./wc wc.cpp makefile
+#+end_src
