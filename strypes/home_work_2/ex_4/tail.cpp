@@ -1,69 +1,50 @@
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <vector>
 
-void handle_n_flag_no_file(int max_lines) {
-  using std::cout, std::endl, std::cin, std::string;
+void handle_n_flag_no_file(int numLines) {
+  std::vector<std::string> lines;
+  std::string line;
 
-  int line_count = 0;
-
-  // nothing to do
-  if (max_lines == 0) {
-    std::cout << "HERE!";
-    return;
-
-    // read first max_lines lines
-  } else if (max_lines > 0) {
-    while (!cin.eof()) {
-      string line;
-      std::getline(cin, line); // Read a line from stdin
-
-      line_count++; // count lines
-
-      // Process the input line
-      cout << line << endl;
-
-      if (line_count >= max_lines) {
-        return;
-      }
-    }
+  // Read lines into vector from stdin
+  while (std::getline(std::cin, line)) {
+    lines.push_back(line);
   }
 
-  // read until new line
-  if (max_lines < 0) {
-    while (!cin.eof()) {
-      string line;
-      std::getline(cin, line); // Read a line from stdin
+  int totalLines = lines.size();
+  int startLine = std::max(0, totalLines - numLines);
 
-      line_count++; // count lines
-
-      // Process the input line
-      cout << "Read: " << line << "Line: " << max_lines << endl;
-
-      if (max_lines >= line_count) {
-        break;
-      }
-    }
-    return;
+  // Print lines from startLine to the end
+  for (int i = startLine; i < totalLines; ++i) {
+    std::cout << lines[i] << std::endl;
   }
-  return;
 }
 
 bool handle_n_flag_with_file(const std::string &filename, int numLines) {
-  // Open the file
   std::ifstream file(filename);
+  std::vector<std::string> lastLines(numLines);
+  int index = 0;
+  numLines = std::abs(numLines); // Ensure numLines is positive
 
-  // Check if the file opened successfully
   if (!file.is_open()) {
-    return false;
+    return false; // Return false if file couldn't be opened
   }
 
-  // Read and display the first numLines lines of the file
+  // Read lines into circular buffer
   std::string line;
-  int lineCount = 0;
-  while (lineCount < numLines && std::getline(file, line)) {
-    std::cout << line << std::endl;
-    lineCount++;
+  while (std::getline(file, line)) {
+    lastLines[index % numLines] = line;
+    index++;
+  }
+
+  // Print the last few lines
+  for (int i = 0; i < numLines; ++i) {
+    line = lastLines[(index + i) % numLines];
+    if (line == "") {
+      continue;
+    }
+    std::cout << lastLines[(index + i) % numLines] << std::endl;
   }
 
   // Close the file
@@ -146,3 +127,30 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
+// read words not chars
+//
+// bool handle_n_flag_with_file(const std::string &filename, int numLines) {
+//   std::ifstream file(filename);
+//   std::vector<std::string> lastLines(numLines);
+//   int index = 0;
+//   numLines = std::abs(numLines); // the index should be positive
+//
+//   if (!file.is_open()) {
+//     return false; // Return false if file couldn't be opened
+//   }
+//
+//   // Read lines into circular buffer
+//   while (file >> lastLines[index % numLines]) {
+//     index++;
+//   }
+//
+//   // Print the last few lines
+//   for (int i = 0; i < numLines; ++i) {
+//     std::cout << lastLines[(index + i) % numLines] << std::endl;
+//   }
+//
+//   // Close the file
+//   file.close();
+//   return true;
+// }
