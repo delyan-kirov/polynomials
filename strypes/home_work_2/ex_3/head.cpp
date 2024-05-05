@@ -3,7 +3,10 @@
 #include <vector>
 
 void handle_n_flag_no_file(int max_lines) {
-  using std::cout, std::endl, std::cin, std::string;
+  using std::cin;
+  using std::cout;
+  using std::endl;
+  using std::string;
 
   int line_count = 0;
 
@@ -85,7 +88,6 @@ void print_usage(void) {
 }
 
 int main(int argc, char *argv[]) {
-  bool nflag = false;
   bool qflag = false;
   bool helpflag = false;
   int max_lines = 20;
@@ -96,7 +98,6 @@ int main(int argc, char *argv[]) {
 
     if (arg == "-n") {
       if (i + 1 < argc && std::isdigit(argv[i + 1][0])) {
-        nflag = true;
         max_lines = std::atoi(argv[i + 1]);
         ++i; // skip the next argument since it's the value for -n
       } else {
@@ -131,7 +132,7 @@ int main(int argc, char *argv[]) {
       std::cout << "\n";
     }
   } else if (files.size() > 1) {
-    for (const auto &file : files) {
+    for (const auto &_ : files) {
       bool could_open_file = handle_n_flag_with_file(files[0], max_lines);
       if (!could_open_file) {
         std::cout << "error: could not open file: " << files[0] << std::endl;

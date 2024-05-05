@@ -54,8 +54,6 @@ template <typename T>
 inline bool
 absolute_epsilon_equal(T a, T b,
                        T epsilon = std::numeric_limits<T>::epsilon() * 128) {
-  T absA = std::abs(a);
-  T absB = std::abs(b);
   T diff = std::abs(a - b);
 
   return diff < (epsilon * std::numeric_limits<T>::min());
