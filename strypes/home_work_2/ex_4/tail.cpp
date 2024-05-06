@@ -125,30 +125,3 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-
-// read words not chars
-//
-// bool handle_n_flag_with_file(const std::string &filename, int numLines) {
-//   std::ifstream file(filename);
-//   std::vector<std::string> lastLines(numLines);
-//   int index = 0;
-//   numLines = std::abs(numLines); // the index should be positive
-//
-//   if (!file.is_open()) {
-//     return false; // Return false if file couldn't be opened
-//   }
-//
-//   // Read lines into circular buffer
-//   while (file >> lastLines[index % numLines]) {
-//     index++;
-//   }
-//
-//   // Print the last few lines
-//   for (int i = 0; i < numLines; ++i) {
-//     std::cout << lastLines[(index + i) % numLines] << std::endl;
-//   }
-//
-//   // Close the file
-//   file.close();
-//   return true;
-// }
