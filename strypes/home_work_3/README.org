@@ -1,0 +1,3 @@
+* Homework 3
+
+[[github page][https://github.com/delyan-kirov/public/tree/master/strypes/home_work_3]]
