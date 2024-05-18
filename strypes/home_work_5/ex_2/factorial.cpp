@@ -2,7 +2,7 @@
 #include <optional>
 
 unsigned int factorial(unsigned int num) {
-  uint result = 1;
+  unsigned int result = 1;
   while (num > 0) {
     result *= num--;
   }
