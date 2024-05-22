@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 #include <optional>
 
 struct List {
@@ -104,6 +105,22 @@ std::optional<int> listPopAt(List **xs, size_t idx) {
   return std::optional(*result); // Indicate success
 }
 
+// Same as popAt but does not pop, only returns the element
+std::optional<int> listGetElem(List *xs, size_t idx) {
+  List *current = xs;
+  while (idx > 0 && current != NULL) {
+    current = current->next;
+    --idx;
+  }
+  if (current == NULL) {
+    return std::nullopt;
+  } else if (idx > 0) {
+    return std::nullopt;
+  } else {
+    return std::optional(current->value);
+  }
+}
+
 // 1 -> 2 -> 3 -> x
 // x <- 1 2 -> 3 -> x
 // x <- 1 <- 2 3 -> x
@@ -124,10 +141,11 @@ void listReverse(List **xs) {
     current = next;           // Move to the next node
   }
 
-  *xs =
-      previous; // Update the head pointer to the new head (last node processed)
+  // Update the head pointer to the new head (last node processed)
+  *xs = previous;
 }
 
+// bubble sort
 void listSort(List **xs) {
   if (*xs == NULL || (*xs)->next == NULL) {
     return;
@@ -142,6 +160,25 @@ void listSort(List **xs) {
       }
     }
   }
+}
+
+bool listQueryFor(List *xs, int x) {
+  while (xs != NULL) {
+    if (xs->value == x) {
+      return true;
+    }
+    xs = xs->next;
+  }
+  return false;
+}
+
+bool listDelete(List *xs) {
+  while (xs != NULL) {
+    List *keeper = xs->next;
+    free(xs);
+    xs = keeper;
+  }
+  return false;
 }
 
 int main() {
@@ -163,6 +200,13 @@ int main() {
 
   listSort(&xs);
   listPrint(xs);
+
+  std::cout << listGetElem(xs, 1).value() << std::endl;
+  std::cout << listQueryFor(xs, -8) << std::endl;
+  listPrint(xs);
+
+  listDelete(xs);
+  // listPrint(xs);
 
   return 0;
 }
