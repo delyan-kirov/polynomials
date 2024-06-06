@@ -128,8 +128,20 @@ testCheckAnagrams()
 
   // test negative
   {
-    const char* str3 = "abc";
-    const char* str4 = "xyz";
+    const char* str1 = "abc";
+    const char* str2 = "xyz";
+
+    if (areAnagrams(str1, str2)) {
+      std::cout << "\"" << str1 << "\" and \"" << str2 << "\" are anagrams.\n";
+    } else {
+      std::cout << "\"" << str1 << "\" and \"" << str2
+                << "\" are not anagrams.\n";
+    }
+  }
+  // test spaces
+  {
+    const char* str3 = "a b";
+    const char* str4 = "ba";
 
     if (areAnagrams(str3, str4)) {
       std::cout << "\"" << str3 << "\" and \"" << str4 << "\" are anagrams.\n";
@@ -146,7 +158,7 @@ testRotateMatrix()
 {
   std::cout << "\n--- ex 4: Rotate Matrix ---\n\n";
 
-  std::cout << "Example 1\n";
+  std::cout << "Example 1 - inplace\n";
   {
     Matrix<int> mat(3, 3);
     mat.set(0, 0, 1);
@@ -169,7 +181,7 @@ testRotateMatrix()
 
     mat.destroy();
   }
-  std::cout << "\nExample 2\n";
+  std::cout << "\nExample 2 - inplace\n";
   {
     Matrix<int> mat(2, 2);
     mat.set(0, 0, 1);
@@ -187,6 +199,23 @@ testRotateMatrix()
 
     mat.destroy();
   }
+  std::cout << "\nExample 3 - new\n";
+  {
+    Matrix<int> mat(1, 2);
+    mat.set(0, 0, 1);
+    mat.set(0, 1, 2);
+
+    std::cout << "Original Matrix:\n";
+    mat.print();
+
+    auto matRotated = genRotateMatrix90Deg(mat);
+
+    std::cout << "Rotated Matrix:\n";
+    matRotated.print();
+
+    mat.destroy();
+    matRotated.destroy();
+  }
 }
 
 // ex 5: Multiplying Matrices
@@ -195,7 +224,7 @@ testMultiplyMatrices()
 {
   std::cout << "\n--- ex 5: Multiply Matrices ---\n\n";
 
-  std::cout << "Example 1:\n";
+  std::cout << "Example - endomorphism (square matrix)\n";
   {
     Matrix<int> mat1(2, 2);
     mat1.set(0, 0, 1);
@@ -224,7 +253,8 @@ testMultiplyMatrices()
     mat2.destroy();
     result.destroy();
   }
-  std::cout << "\nExample 2:\n";
+
+  std::cout << "\nExample - identity matrix:\n";
   {
     Matrix<int> mat1(2, 2);
     mat1.set(0, 0, 1);
@@ -253,7 +283,44 @@ testMultiplyMatrices()
     mat2.destroy();
     result.destroy();
   }
+
+  std::cout << "\nExample - Non-Square Matrices:\n";
+  {
+    Matrix<int> mat1(2, 3);
+    mat1.set(0, 0, 1);
+    mat1.set(0, 1, 2);
+    mat1.set(0, 2, 3);
+    mat1.set(1, 0, 4);
+    mat1.set(1, 1, 5);
+    mat1.set(1, 2, 6);
+
+    Matrix<int> mat2(3, 2);
+    mat2.set(0, 0, 7);
+    mat2.set(0, 1, 8);
+    mat2.set(1, 0, 9);
+    mat2.set(1, 1, 10);
+    mat2.set(2, 0, 11);
+    mat2.set(2, 1, 12);
+
+    Matrix<int> result = multiply(mat1, mat2);
+
+    std::cout << "Matrix 1:\n";
+    mat1.print();
+
+    std::cout << "Matrix 2:\n";
+    mat2.print();
+
+    std::cout << "Result Matrix:\n";
+    result.print();
+
+    mat1.destroy();
+    mat2.destroy();
+    result.destroy();
+  }
 }
+
+// TODO Redo the Text to take into account white space
+// TODO Add the other matrix problem
 
 int
 main()

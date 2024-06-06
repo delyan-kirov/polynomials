@@ -38,8 +38,11 @@ clang++ test.cpp
 
 Try this:
 
-1. Go into folded `GameOS`
-2. Run `test.exe`
+1. Go to this
+   page[Git page](https://github.com/delyan-kirov/public/tree/master/strypes/home_work_6)
+   and download the git repo
+2. Open terminal inside `GameOs`
+3. Run test.exe
 
 # Expected results
 

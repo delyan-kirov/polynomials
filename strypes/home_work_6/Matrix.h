@@ -81,6 +81,11 @@ multiply(const Matrix<T>& mat1, const Matrix<T>& mat2)
   return result;
 }
 
+/*
+ * For a non square matrix, row-rotation changes dimension.
+ * This invalidates the implemented data structure.
+ * For this reason, two versions are given.
+ * */
 template<typename T>
 bool
 rotate90DegInPlace(Matrix<T>& mat)
@@ -116,6 +121,7 @@ rotate90DegInPlace(Matrix<T>& mat)
   return true;
 }
 
+/* General matrix rotation version, creating a new matrix */
 template<typename T>
 Matrix<T>
 genRotateMatrix90Deg(const Matrix<T>& matrix)
